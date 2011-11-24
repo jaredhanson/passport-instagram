@@ -1,0 +1,16 @@
+{
+  "name": "passport-instagram",
+  "version": "0.1.0",
+  "description": "Instagram authentication strategy for Passport.",
+  "author": "Jared Hanson <jaredhanson@gmail.com> (http://www.jaredhanson.net/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jaredhanson/passport-instagram.git"
+  },
+  "main": "./lib/passport-instagram",
+  "dependencies": {
+    "passport-oauth": ">= 0.1.0"
+  },
+  "engines": { "node": ">= 0.4.0" },
+  "keywords": ["passport", "instagram", "auth", "authn", "authentication", "identity"]
+}
