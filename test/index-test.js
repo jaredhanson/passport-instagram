@@ -7,9 +7,6 @@ var instagram = require('..');
 vows.describe('passport-instagram').addBatch({
   
   'module': {
-    'should report a version': function (x) {
-      assert.isString(instagram.version);
-    },
   },
   
 }).export(module);
