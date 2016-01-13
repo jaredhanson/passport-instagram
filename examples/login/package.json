@@ -2,9 +2,14 @@
   "name": "passport-instagram-examples-login",
   "version": "0.0.0",
   "dependencies": {
-    "express": ">= 0.0.0",
-    "ejs": ">= 0.0.0",
-    "passport": ">= 0.0.0",
-    "passport-instagram": ">= 0.0.0"
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.13.0",
+    "method-override": "^2.3.5",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.2",
+    "passport-instagram": "^1.0.0"
   }
 }
