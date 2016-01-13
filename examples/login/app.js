@@ -1,5 +1,10 @@
 var express = require('express')
   , passport = require('passport')
+  , morgan = require('morgan')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
+  , methodOverride = require('method-override')
+  , session = require('express-session')
   , util = require('util')
   , InstagramStrategy = require('passport-instagram').Strategy;
 
@@ -48,24 +53,28 @@ passport.use(new InstagramStrategy({
 
 
 
-var app = express.createServer();
-
+var app = express();
 // configure Express
-app.configure(function() {
+
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
-  app.use(express.logger());
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.session({ secret: 'keyboard cat' }));
-  // Initialize Passport!  Also use passport.session() middleware, to support
+  app.use(morgan('combined'));
+  app.use(cookieParser());
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+  app.use(session({
+    saveUninitialized: true,
+    resave: true,
+    secret: 'secret'
+  }));  // Initialize Passport!  Also use passport.session() middleware, to support
   // persistent login sessions (recommended).
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-});
+
 
 
 app.get('/', function(req, res){
@@ -108,8 +117,15 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
+var port = 3000;
 
+app.listen(port, function(error) {
+  if (error) {
+    console.error(error)
+  } else {
+    console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
+  }
+})
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
