@@ -1,9 +1,15 @@
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , InstagramStrategy = require('passport-instagram').Strategy;
+  , InstagramStrategy = require('passport-instagram').Strategy
+  , ejs = require('ejs')
+  , engine = require('ejs-mate')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
+  , methodOverride = require('method-override')
+  , session = require('express-session');
 
-var INSTAGRAM_CLIENT_ID = "--insert-instagram-client-id-here--"
+var INSTAGRAM_CLIENT_ID = "--insert-instagram-client-id-here--";
 var INSTAGRAM_CLIENT_SECRET = "--insert-instagram-client-secret-here--";
 
 
@@ -48,24 +54,24 @@ passport.use(new InstagramStrategy({
 
 
 
-var app = express.createServer();
+var app = express();
 
 // configure Express
-app.configure(function() {
+  app.engine('ejs', engine);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
-  app.use(express.logger());
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.session({ secret: 'keyboard cat' }));
+//  app.use(express.logger());
+  app.use(cookieParser());
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+  app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
   // Initialize Passport!  Also use passport.session() middleware, to support
   // persistent login sessions (recommended).
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(app.router);
+//  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-});
 
 
 app.get('/', function(req, res){
