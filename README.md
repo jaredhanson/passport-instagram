@@ -9,6 +9,11 @@ unobtrusively integrated into any application or framework that supports
 [Connect](http://www.senchalabs.org/connect/)-style middleware, including
 [Express](http://expressjs.com/).
 
+[![npm](https://img.shields.io/npm/v/passport-instagram.svg)](https://www.npmjs.com/package/passport-instagram)
+[![build](https://img.shields.io/travis/jaredhanson/passport-instagram.svg)](https://travis-ci.org/jaredhanson/passport-instagram)
+[![coverage](https://img.shields.io/coveralls/jaredhanson/passport-instagram.svg)](https://coveralls.io/github/jaredhanson/passport-instagram)
+[...](https://github.com/jaredhanson/passport-instagram/wiki/Status)
+
 ## Install
 
     $ npm install passport-instagram
