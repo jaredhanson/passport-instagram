@@ -3,7 +3,7 @@ var express = require('express')
   , util = require('util')
   , InstagramStrategy = require('passport-instagram').Strategy;
 
-var INSTAGRAM_CLIENT_ID = "--insert-instagram-client-id-here--"
+var INSTAGRAM_CLIENT_ID = "--insert-instagram-client-id-here--";
 var INSTAGRAM_CLIENT_SECRET = "--insert-instagram-client-secret-here--";
 
 
@@ -68,15 +68,15 @@ app.configure(function() {
 });
 
 
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   res.render('index', { user: req.user });
 });
 
-app.get('/account', ensureAuthenticated, function(req, res){
+app.get('/account', ensureAuthenticated, function(req, res) {
   res.render('account', { user: req.user });
 });
 
-app.get('/login', function(req, res){
+app.get('/login', function(req, res) {
   res.render('login', { user: req.user });
 });
 
@@ -87,7 +87,7 @@ app.get('/login', function(req, res){
 //   will redirect the user back to this application at /auth/instagram/callback
 app.get('/auth/instagram',
   passport.authenticate('instagram'),
-  function(req, res){
+  function(req, res) {
     // The request will be redirected to Instagram for authentication, so this
     // function will not be called.
   });
@@ -103,7 +103,7 @@ app.get('/auth/instagram/callback',
     res.redirect('/');
   });
 
-app.get('/logout', function(req, res){
+app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
@@ -118,5 +118,5 @@ app.listen(3000);
 //   login page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  res.redirect('/login');
 }
