@@ -50,6 +50,12 @@ passport.use(new InstagramStrategy({
 ));
 ```
 
+#### Sign Requests
+
+If you enabled "Enforce Signed Requests" in the Instagram Client settings 
+(Under Security Tab) set `signRequests = true` in the `options` object 
+when configuring the strategy.
+
 #### Authenticate Requests
 
 Use `passport.authenticate()`, specifying the `'instagram'` strategy, to
